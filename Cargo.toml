@@ -1,6 +1,6 @@
 [package]
 name = "retrier"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["softprops <d.tangren@gmail.com>", "Ifiok Jr. <ifiokotung@gmail.com>"]
 description = "A wasm-compatible retry library for futures"
 edition = "2021"
