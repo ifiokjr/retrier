@@ -49,9 +49,9 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
     - name: build
-      run: cargo build --target wasm32-unknown-unknown --features wasm-bindgen
+      run: cargo build --target wasm32-unknown-unknown --features js
     - name: test
-      run: cargo test --features wasm-bindgen
+      run: cargo test --features js
 
   test:
     strategy:

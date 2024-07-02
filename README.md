@@ -16,9 +16,6 @@
   <a href="http://docs.rs/retrier">
 		<img src="https://docs.rs/retrier/badge.svg"/>
 	</a>  
-  <a href="https://ifiokjr.github.io/retrier">
-		<img src="https://img.shields.io/badge/docs-master-green.svg"/>
-	</a>
 </div>
 
 <br />

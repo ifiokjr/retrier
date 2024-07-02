@@ -61,7 +61,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! again = { version = "xxx", features = ["wasm-bindgen"] }
+//! retrier = { version = "x", features = ["js"] }
 //! ```
 use futures_timer::Delay;
 #[cfg(feature = "rand")]
