@@ -7,7 +7,7 @@ use std::{
 async fn main() -> Result<(), &'static str> {
     pretty_env_logger::init();
     let counter = Rc::new(AtomicUsize::new(0));
-    again::retry(move || {
+    retrier::retry(move || {
         let counter = counter.clone();
         async move {
             let num = counter.load(Ordering::Relaxed);

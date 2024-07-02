@@ -10,7 +10,7 @@
 //! will retry a task every second for 5 seconds with an exponential backoff.
 //!
 //! ```no_run
-//! again::retry(|| reqwest::get("https://api.company.com"));
+//! retrier::retry(|| reqwest::get("https://api.company.com"));
 //! ```
 //!
 //! ## Conditional retries
@@ -21,7 +21,7 @@
 //! should be retried.
 //!
 //! ```no_run
-//! again::retry_if(
+//! retrier::retry_if(
 //!     || reqwest::get("https://api.company.com"),
 //!     reqwest::Error::is_status,
 //! );
@@ -36,7 +36,7 @@
 //! across operations. For more information see the [`RetryPolicy`](struct.RetryPolicy.html) docs.
 //!
 //! ```ignore
-//! use again::RetryPolicy;
+//! use retrier::RetryPolicy;
 //! use std::time::Duration;
 //!
 //! let policy = RetryPolicy::fixed(Duration::from_millis(100))
@@ -71,19 +71,19 @@ use std::{cmp::min, future::Future, time::Duration};
 /// Retries a fallible `Future` with a default `RetryPolicy`
 ///
 /// ```
-/// again::retry(|| async { Ok::<u32, ()>(42) });
+/// retrier::retry(|| async { Ok::<u32, ()>(42) });
 /// ```
 pub async fn retry<T>(task: T) -> Result<T::Item, T::Error>
 where
     T: Task,
 {
-    crate::retry_if(task, Always).await
+    retry_if(task, Always).await
 }
 
 /// Retries a fallible `Future` under a certain provided condition with a default `RetryPolicy`
 ///
 /// ```
-/// again::retry_if(|| async { Err::<u32, u32>(7) }, |err: &u32| *err != 42);
+/// retrier::retry_if(|| async { Err::<u32, u32>(7) }, |err: &u32| *err != 42);
 /// ```
 pub async fn retry_if<T, C>(
     task: T,
@@ -100,7 +100,7 @@ where
 /// with a default `RetryPolicy`
 ///
 /// ```
-/// again::collect(
+/// retrier::collect(
 ///     |i: u32| async move { Ok::<u32, ()>(i + 1) },
 ///     |r: &u32| if *r != 32 { Some(*r) } else { None },
 ///     1 as u32,
@@ -125,7 +125,7 @@ where
 /// not successful under the same policy configuration and the provided error condition.
 ///
 /// ```
-/// again::collect_and_retry(
+/// retrier::collect_and_retry(
 ///     |input: u32| async move { Ok::<u32, u32>(input + 1) },
 ///     |result: &u32| if *result < 2 { Some(*result) } else { None },
 ///     |err: &u32| *err > 1,

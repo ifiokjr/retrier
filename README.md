@@ -1,22 +1,22 @@
 <h1 align="center">
-  again ♻️
+  retrier ♻️
 </h1>
 
 <p align="center">
-   wasm-compatible retry interfaces for fallible Rustlang std library Futures
+   A wasm-compatible retry library for futures
 </p>
 
 <div align="center">
-  <a href="https://github.com/softprops/again/actions">
-		<img src="https://github.com/softprops/again/workflows/Main/badge.svg"/>
+  <a href="https://github.com/ifiokjr/retrier/actions">
+		<img src="https://github.com/ifiokjr/retrier/workflows/ci/badge.svg"/>
 	</a>
-  <a href="https://crates.io/crates/again">
-		<img src="http://meritbadge.herokuapp.com/again"/>
+  <a href="https://crates.io/crates/retrier">
+		<img src="http://meritbadge.herokuapp.com/retrier"/>
 	</a>
-  <a href="http://docs.rs/again">
-		<img src="https://docs.rs/again/badge.svg"/>
+  <a href="http://docs.rs/retrier">
+		<img src="https://docs.rs/retrier/badge.svg"/>
 	</a>  
-  <a href="https://softprops.github.io/again">
+  <a href="https://ifiokjr.github.io/retrier">
 		<img src="https://img.shields.io/badge/docs-master-green.svg"/>
 	</a>
 </div>
@@ -30,8 +30,12 @@ A goal of any operation should be a successful outcome. This crate gives operati
 In your Cargo.toml file, add the following under the `[dependencies]` heading
 
 ```toml
-again = "0.1"
+retrier = "0.1"
 ```
+
+## 📝note
+
+This is fork of the [`again`](https://github.com/softprops/again) library. This fork brings it up to date and adds to automation features which should make maintainance simpler.
 
 ## 🤸usage
 
@@ -44,7 +48,7 @@ use std::error::Error;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     pretty_env_logger::init();
-    again::retry(|| reqwest::get("https://api.you.com")).await?;
+    retrier::retry(|| reqwest::get("https://api.you.com")).await?;
     Ok(())
 }
 ```
@@ -57,7 +61,7 @@ use std::error::Error;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     pretty_env_logger::init();
-    again::retry_if(
+    retrier::retry_if(
       || reqwest::get("https://api.you.com")
       reqwest::Error::is_status
     ).await?;
@@ -71,7 +75,7 @@ with a configurable and reusable `RetryPolicy`.
 ```rust
 use std::error::Error;
 use std::time::Duration;
-use again::RetryPolicy;
+use retrier::RetryPolicy;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -84,6 +88,5 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-See the [docs](http://docs.rs/again) for more examples.
+See the [docs](http://docs.rs/retrier) for more examples.
 
-Doug Tangren (softprops) 2020
