@@ -73,6 +73,7 @@ jobs:
       run: cargo test
 
   release:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: [test]
     steps:
