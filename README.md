@@ -11,7 +11,7 @@
 		<img src="https://github.com/ifiokjr/retrier/workflows/ci/badge.svg"/>
 	</a>
   <a href="https://crates.io/crates/retrier">
-		<img src="http://meritbadge.herokuapp.com/retrier"/>
+		<img src="https://img.shields.io/crates/v/retrier"/>
 	</a>
   <a href="http://docs.rs/retrier">
 		<img src="https://docs.rs/retrier/badge.svg"/>
