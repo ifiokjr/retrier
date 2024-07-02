@@ -51,7 +51,7 @@ jobs:
     - name: build
       run: cargo build --target wasm32-unknown-unknown --features wasm-bindgen
     - name: test
-      run: cargo test --target wasm32-unknown-unknown --features wasm-bindgen
+      run: cargo test --features wasm-bindgen
 
   test:
     strategy:
@@ -78,8 +78,6 @@ jobs:
     steps:
       - name: setup Rust
         uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: ${{ matrix.rust }}
       - name: checkout
         uses: actions/checkout@v4
       - name: release
