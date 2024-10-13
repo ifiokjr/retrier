@@ -1,4 +1,4 @@
-//! `Again` is a wasm-compatible utility for retrying standard library [`Futures`](https://doc.rust-lang.org/std/future/trait.Future.html) with a `Result` output type
+//! `Retrier` is a wasm-compatible utility for retrying standard library [`Futures`](https://doc.rust-lang.org/std/future/trait.Future.html) with a `Result` output type
 //!
 //! A goal of any operation should be a successful outcome. This crate gives operations a better chance at achieving that.
 //!
@@ -15,7 +15,7 @@
 //!
 //! ## Conditional retries
 //!
-//! By default, `again` will retry any failed `Future` if its `Result` output type is an `Err`.
+//! By default, `retrier` will retry any failed `Future` if its `Result` output type is an `Err`.
 //! You may not want to retry _every_ kind of error. In those cases you may wish to use the [`retry_if`](fn.retry_if.html) fn, which
 //! accepts an additional argument to conditionally determine if the error
 //! should be retried.
@@ -29,7 +29,7 @@
 //!
 //! ## Retry policies
 //!
-//! Every application has different needs. The default retry behavior in `again`
+//! Every application has different needs. The default retry behavior in `retrier`
 //! likely will not suit all of them. You can define your own retry behavior
 //! with a [`RetryPolicy`](struct.RetryPolicy.html). A RetryPolicy can be configured with a fixed or exponential backoff,
 //! jitter, and other common retry options. This objects may be reused
@@ -53,7 +53,7 @@
 //!
 //! # wasm features
 //!
-//! `again` supports [WebAssembly](https://webassembly.org/) targets i.e. `wasm32-unknown-unknown` which should make this
+//! `retrier` supports [WebAssembly](https://webassembly.org/) targets i.e. `wasm32-unknown-unknown` which should make this
 //! crate a good fit for most environments
 //!
 //! Two cargo features exist to support various wasm runtimes: `wasm-bindgen` and `stdweb`.

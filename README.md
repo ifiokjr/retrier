@@ -15,7 +15,7 @@
 	</a>
   <a href="http://docs.rs/retrier">
 		<img src="https://docs.rs/retrier/badge.svg"/>
-	</a>  
+	</a>
 </div>
 
 <br />
@@ -36,8 +36,7 @@ This is fork of the [`again`](https://github.com/softprops/again) library. This 
 
 ## 🤸usage
 
-For very simple cases you can use the module level `retry` function
-to retry a potentially fallible operation.
+For very simple cases you can use the module level `retry` function to retry a potentially fallible operation.
 
 ```rust
 use std::error::Error;
@@ -66,8 +65,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-You can also customize retry behavior to suit your applications needs
-with a configurable and reusable `RetryPolicy`.
+You can also customize retry behavior to suit your applications needs with a configurable and reusable `RetryPolicy`.
 
 ```rust
 use std::error::Error;
@@ -86,4 +84,3 @@ async fn main() -> Result<(), Box<dyn Error>> {
 ```
 
 See the [docs](http://docs.rs/retrier) for more examples.
-
