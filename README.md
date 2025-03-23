@@ -43,9 +43,9 @@ use std::error::Error;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    pretty_env_logger::init();
-    retrier::retry(|| reqwest::get("https://api.you.com")).await?;
-    Ok(())
+	pretty_env_logger::init();
+	retrier::retry(|| reqwest::get("https://api.you.com")).await?;
+	Ok(())
 }
 ```
 
@@ -70,16 +70,17 @@ You can also customize retry behavior to suit your applications needs with a con
 ```rust
 use std::error::Error;
 use std::time::Duration;
+
 use retrier::RetryPolicy;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    pretty_env_logger::init();
-    let policy = RetryPolicy::exponential(Duration::from_millis(200))
-      .with_max_retries(10)
-      .with_jitter(true);
-    policy.retry(|| reqwest::get("https://api.you.com")).await?;
-    Ok(())
+	pretty_env_logger::init();
+	let policy = RetryPolicy::exponential(Duration::from_millis(200))
+		.with_max_retries(10)
+		.with_jitter(true);
+	policy.retry(|| reqwest::get("https://api.you.com")).await?;
+	Ok(())
 }
 ```
 

@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: setup rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: nightly
       - name: checkout
         uses: actions/checkout@v4
       - run: cargo fmt --all -- --check
@@ -44,14 +46,14 @@ jobs:
   test-wasm:
     runs-on: ubuntu-latest
     steps:
-    - name: setup rust
-      uses: dtolnay/rust-toolchain@stable
-    - name: checkout
-      uses: actions/checkout@v4
-    - name: build
-      run: cargo build --target wasm32-unknown-unknown --features js
-    - name: test
-      run: cargo test --features js
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build
+        run: cargo build --target wasm32-unknown-unknown --features js
+      - name: test
+        run: cargo test --features js
 
   test:
     strategy:
@@ -59,18 +61,18 @@ jobs:
         rust: [stable, beta, nightly]
     runs-on: ubuntu-latest
     steps:
-    - name: install binaries
-      uses: taiki-e/install-action@v2
-      with:
-        tool: cargo-hack
-    - name: setup rust
-      uses: dtolnay/rust-toolchain@stable
-      with:
-        toolchain: ${{ matrix.rust }}
-    - name: checkout
-      uses: actions/checkout@v4
-    - name: test
-      run: cargo test
+      - name: install binaries
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-hack
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: test
+        run: cargo test
 
   release:
     if: github.event_name == 'push'
